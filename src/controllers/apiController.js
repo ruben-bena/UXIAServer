@@ -16,5 +16,5 @@ const adminLogin = async (req, res, next) => {
 };
 
 module.exports = {
-    adminLogging: adminLogin
+    adminLogin
 }
