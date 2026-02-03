@@ -9,7 +9,7 @@ const User = sequelize.define('User', {
     },
     isAdministrator: {
         type: DataTypes.BOOLEAN,
-        DEFAULTvALUE: false,
+        defaultValue: false,
     },
     username: {
         type: DataTypes.STRING,
@@ -41,7 +41,7 @@ const User = sequelize.define('User', {
     },
     isValidated: {
         type: DataTypes.BOOLEAN,
-        DEFAULTvALUE: false,
+        defaultValue: false,
     },
     lastTimeLogged: {
         type: DataTypes.DATE,
