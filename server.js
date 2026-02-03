@@ -8,6 +8,7 @@ const express = require('express');
 const fs = require('fs');
 
 const { sequelize } = require('./src/config/database');
+require('./src/models');
 const apiRoutes = require('./src/routes/apiRoutes');
 const { logger, expressLogger } = require('./src/config/logger');
 
