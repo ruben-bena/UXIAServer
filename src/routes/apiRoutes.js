@@ -1,8 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { adminLogin } = require('../controllers/apiController');
+const controller = require('../controllers/apiController.js');
+const adminAuth = require('../middleware/adminAuth.js');
 
 
-router.post('/admin/usuaris/login', adminLogin);
+router.post('/admin/usuaris/login', controller.adminLogin);
+router.post('/admin/usuaris/logout', adminAuth, controller.adminLogout);
+router.post('/admin/usuaris/testtoken', adminAuth, controller.adminTestToken);
 
 module.exports = router;
