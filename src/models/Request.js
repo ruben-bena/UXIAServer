@@ -23,7 +23,7 @@ const Request = sequelize.define('Request', {
         }
     },
     model: {
-        type: DataTypes.SRING,
+        type: DataTypes.STRING,
         defaultValue: process.env.CHAT_API_OLLAMA_MODEL,
         allowNull: false
     },
