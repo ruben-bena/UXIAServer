@@ -21,6 +21,7 @@ const adminLogin = async (req, res) => {
         message: 'Usuari o contrasenya incorrectes'
       });
     }
+    logger.debug('User found && Password correct ---> OK');
 
     if (!user.isAdministrator) {
       return res.json({
@@ -28,6 +29,7 @@ const adminLogin = async (req, res) => {
         message: 'Usuari sense permisos d’administrador'
       });
     }
+    logger.debug('User is an Administrator ---> OK');
 
     if (!user.isValidated) {
       return res.json({
@@ -35,6 +37,7 @@ const adminLogin = async (req, res) => {
         message: 'Usuari no validat'
       });
     }
+    logger.debug('User is validated ---> OK');
 
     const tokenValue = jwt.sign(
       {
@@ -47,9 +50,11 @@ const adminLogin = async (req, res) => {
 
     await Token.destroy({ where: { userId: user.userId } });
     await Token.create({ userId: user.userId, token: tokenValue });
+    logger.debug('Old token deleted && new token registered');
 
     user.lastTimeLogged = new Date();
     await user.save();
+    logger.debug('Updated lastTimeLogged for logged user');
 
     return res.json({
       status: 'OK',
@@ -70,6 +75,7 @@ const adminLogin = async (req, res) => {
  * TEST TOKEN
  */
 const adminTestToken = async (req, res) => {
+  logger.debug('Entro en el adminTestToken...')
   try {
     logger.info('New call to /api/admin/usuaris/testtoken');
 
@@ -83,6 +89,7 @@ const adminTestToken = async (req, res) => {
 
     if (!tokenInDb) {
       // Token NO coincide con la BBDD → error
+      logger.debug('Token sent by this user does NOT match with registered in DDBB');
       return res.status(401).json({
         status: 'ERROR',
         message: 'Token invàlid'
@@ -90,6 +97,7 @@ const adminTestToken = async (req, res) => {
     }
 
     // Token coincide → OK
+    logger.debug('Token sent by this user matches with registered in DDBB');
     return res.json({
       status: 'OK',
       message: 'Token vàlid'
