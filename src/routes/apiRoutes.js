@@ -7,5 +7,6 @@ const adminAuth = require('../middleware/adminAuth.js');
 router.post('/admin/usuaris/login', controller.adminLogin);
 router.post('/admin/usuaris/logout', adminAuth, controller.adminLogout);
 router.get('/admin/usuaris/testtoken', adminAuth, controller.adminTestToken);
+router.post('/analitzar-imatge', controller.analyzeImage)
 
 module.exports = router;
