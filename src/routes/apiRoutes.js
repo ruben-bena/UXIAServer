@@ -2,11 +2,12 @@ const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/apiController.js');
 const adminAuth = require('../middleware/adminAuth.js');
+const { analyzeImage } = require('../controllers/analyzeImageController.js');
 
 
 router.post('/admin/usuaris/login', controller.adminLogin);
 router.post('/admin/usuaris/logout', adminAuth, controller.adminLogout);
 router.get('/admin/usuaris/testtoken', adminAuth, controller.adminTestToken);
-router.post('/analitzar-imatge', controller.analyzeImage)
+router.post('/analitzar-imatge', analyzeImage)
 
 module.exports = router;
