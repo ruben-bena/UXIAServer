@@ -1,0 +1,16 @@
+meta {
+  name: INVALID body should return ERROR
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{proxmox-uri}}/api/analitzar-imatge
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

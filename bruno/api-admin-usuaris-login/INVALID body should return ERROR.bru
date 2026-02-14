@@ -1,20 +1,13 @@
 meta {
-  name: NOT VALID credentials
+  name: INVALID body should return ERROR
   type: http
-  seq: 2
+  seq: 3
 }
 
 post {
   url: {{proxmox-uri}}/api/admin/usuaris/login
-  body: json
+  body: none
   auth: inherit
-}
-
-body:json {
-  {
-    "email": "a",
-    "password": "a"
-  }
 }
 
 settings {
