@@ -4,10 +4,10 @@ services:
     image: mysql:8.0
     container_name: uxia-server-mysql
     environment:
-      MYSQL_DATABASE: chatdb
-      MYSQL_USER: chatuser
-      MYSQL_PASSWORD: chatpass
-      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: UxiaDDBB
+      MYSQL_USER: super
+      MYSQL_PASSWORD: 1234
+      MYSQL_ROOT_PASSWORD: 1234
     ports:
       - "3306:3306"
     volumes:
