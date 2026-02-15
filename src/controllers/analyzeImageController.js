@@ -29,12 +29,14 @@ const analyzeImage = async (req, res) => {
 
     // Petición a la IA
     const base64 = await imageToBase64('./assets/labrador.jpg');
+    logger.debug('[analyzeImageController] Imagen convertida a base64 con éxito.');
     const requestBody = {
       model: process.env.MARIA_24_OLLAMA_MODEL,
       prompt: prompt,
       images: [base64],
       stream: false
     };
+    logger.debug(`[analyzeImageController] Parámetros utilizados para la petición a Ollama: model=${requestBody.model} prompt=${requestBody.prompt}`);
     const ollamaResponse = await fetch(`${process.env.MARIA_24_OLLAMA_URL}/generate`, {
       method: 'POST',
       headers: {
@@ -42,6 +44,8 @@ const analyzeImage = async (req, res) => {
       },
       body: JSON.stringify(requestBody)
     });
+    const data = await ollamaResponse.json();
+    logger.debug(`[analyzeImageController] Respuesta de completa de Ollama: ${JSON.stringify(data, null, 2)}`);
     return res.json({
       status: 'OK',
       message: ollamaResponse.response
