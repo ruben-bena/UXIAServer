@@ -48,7 +48,7 @@ const analyzeImage = async (req, res) => {
     logger.debug(`[analyzeImageController] Respuesta de completa de Ollama: ${JSON.stringify(data, null, 2)}`);
     return res.json({
       status: 'OK',
-      message: ollamaResponse.response
+      message: JSON.stringify(data, null, 2)
     });
 
     // Consolidar respuesta de la IA en objeto Response
