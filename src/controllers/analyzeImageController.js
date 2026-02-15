@@ -28,7 +28,7 @@ const analyzeImage = async (req, res) => {
     logger.debug('[analyzeImageController] Objeto Request consolidado con éxito.');
 
     // Petición a la IA
-    const base64 = await imageToBase64('../../assets/labrador.jpg');
+    const base64 = await imageToBase64('./assets/labrador.jpg');
     const requestBody = {
       model: process.env.MARIA_24_OLLAMA_MODEL,
       prompt: prompt,
