@@ -1,11 +1,11 @@
 meta {
-  name: [LOCAL] VALID body
+  name: [PROXMOX] VALID body
   type: http
-  seq: 3
+  seq: 4
 }
 
 post {
-  url: {{local-uri}}/api/analitzar-imatge
+  url: {{proxmox-uri}}/api/analitzar-imatge
   body: json
   auth: inherit
 }

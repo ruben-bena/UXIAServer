@@ -24,7 +24,7 @@ const Request = sequelize.define('Request', {
     },
     model: {
         type: DataTypes.STRING,
-        defaultValue: process.env.CHAT_API_OLLAMA_MODEL,
+        defaultValue: process.env.MARIA_24_OLLAMA_MODEL,
         allowNull: false
     },
     stream: {
