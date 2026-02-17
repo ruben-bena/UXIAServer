@@ -12,9 +12,10 @@ post {
 
 body:json {
   {
-    "prompt": "What's in this image?",
+    "model": "qwen2.5vl:7b",
     "stream": false,
-    "model": "qwen2.5vl:7b"
+    "images": [{{perro-base64}}],
+    "prompt": "Analyze the image and respond ONLY with valid JSON in this exact structure:\n\n{\n  \"description\": \"string\",\n  \"tags\": [\"tag1\", \"tag2\", \"tag3\"]\n}\n\nRules:\n- description: clear description in English.\n- tags: array of relevant keywords in lowercase.\n- Maximum 4 tags.\n- Do not include any text outside the JSON."
   }
 }
 
