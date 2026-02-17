@@ -4,6 +4,42 @@ const Token = require('../models/Token');
 const JWT_SECRET = process.env.JWT_SECRET || 'clau_dev';
 const { logger } = require('../config/logger');
 
+
+/**
+ * GET ALL USERS
+ */
+const adminGetUsers = async (req, res) => {
+  try {
+    logger.info('New call to /api/admin/usuaris');
+
+    const users = await User.findAll({
+      attributes: [
+        'userId',
+        'username',
+        'email',
+        'phoneNumber',
+        'isValidated',
+        'isAdministrator',
+        'createdAt',
+        'lastTimeLogged'
+      ]
+    });
+
+    return res.json({
+      status: 'OK',
+      message: 'Consulta realitzada correctament',
+      data: users
+    });
+
+  } catch (error) {
+    logger.error(error);
+    return res.status(500).json({
+      status: 'ERROR',
+      message: 'Error intern'
+    });
+  }
+};
+
 /**
  * LOGIN
  */
@@ -150,4 +186,5 @@ module.exports = {
   adminLogin,
   adminLogout,
   adminTestToken,
+  adminGetUsers,
 };

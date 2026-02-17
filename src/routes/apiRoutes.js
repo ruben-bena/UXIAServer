@@ -8,6 +8,7 @@ const { analyzeImage } = require('../controllers/analyzeImageController.js');
 router.post('/admin/usuaris/login', controller.adminLogin);
 router.post('/admin/usuaris/logout', adminAuth, controller.adminLogout);
 router.get('/admin/usuaris/testtoken', adminAuth, controller.adminTestToken);
-router.post('/analitzar-imatge', analyzeImage)
+router.post('/analitzar-imatge', analyzeImage);
+router.get('/admin/usuaris', adminAuth, controller.adminGetUsers);
 
 module.exports = router;
