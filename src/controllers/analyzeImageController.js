@@ -50,6 +50,9 @@ const analyzeImage = async (req, res) => {
     logger.debug('[analyzeImageController] Consolidando objeto Response...');
     const rawModelResponse = data.response;
     const parsed = JSON.parse(rawModelResponse);
+    logger.debug(`parsed: ${JSON.stringify(parsed)}`);
+    logger.debug(`description: ${parsed.description}`);
+    logger.debug(`tags: ${parsed.tags}`);
     const newResponse = await Response.create({
       requestId: newRequest.requestId,
       responseContent: parsed.description,
