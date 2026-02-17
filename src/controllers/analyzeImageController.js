@@ -50,7 +50,7 @@ const analyzeImage = async (req, res) => {
     const response = `La descripcio es: ${data.description}. Els tags son: ${data.tags}`;
     return res.json({
       status: 'OK',
-      message: response//JSON.stringify(data, null, 2)
+      message: JSON.stringify(response, null, 2)
     });
 
     // Consolidar respuesta de la IA en objeto Response
