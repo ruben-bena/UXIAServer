@@ -7,7 +7,7 @@ require('dotenv').config();
 const analyzeImage = async (req, res) => {
   try {
     const {
-      imageBase64,
+      images,
       prompt,
       model,
       stream
@@ -28,7 +28,8 @@ const analyzeImage = async (req, res) => {
     logger.debug('[analyzeImageController] Objeto Request consolidado con éxito.');
 
     // Petición a la IA
-    const base64 = await imageToBase64('./assets/labrador.jpg');
+    //const base64 = await imageToBase64('./assets/labrador.jpg');
+    const base64 = images[0];
     logger.debug('[analyzeImageController] Imagen convertida a base64 con éxito.');
     const requestBody = {
       model: process.env.MARIA_24_OLLAMA_MODEL,
