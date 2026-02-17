@@ -10,5 +10,7 @@ router.post('/admin/usuaris/logout', adminAuth, controller.adminLogout);
 router.get('/admin/usuaris/testtoken', adminAuth, controller.adminTestToken);
 router.post('/analitzar-imatge', analyzeImage);
 router.get('/admin/usuaris', adminAuth, controller.adminGetUsers);
+router.delete('/admin/usuaris/:userId', adminAuth, controller.adminDeleteUser);
+router.post('/admin/usuaris', adminAuth, controller.adminCreateUser);
 
 module.exports = router;

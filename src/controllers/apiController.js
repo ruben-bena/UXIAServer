@@ -41,6 +41,89 @@ const adminGetUsers = async (req, res) => {
 };
 
 /**
+ * DELETE USER
+ */
+const adminDeleteUser = async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    const user = await User.findByPk(userId);
+
+    if (!user) {
+      return res.json({
+        status: 'ERROR',
+        message: 'Usuari no trobat'
+      });
+    }
+
+    await Token.destroy({ where: { userId } });
+    await user.destroy();
+
+    return res.json({
+      status: 'OK',
+      message: 'Usuari eliminat correctament'
+    });
+
+  } catch (error) {
+    logger.error(error);
+    return res.status(500).json({
+      status: 'ERROR',
+      message: 'Error intern'
+    });
+  }
+};
+
+/**
+ * CREATE USER
+ */
+const adminCreateUser = async (req, res) => {
+  try {
+
+    const {
+      username,
+      email,
+      password,
+      phoneNumber,
+      isAdministrator,
+      isValidated
+    } = req.body;
+
+    const existing = await User.findOne({ where: { email } });
+
+    if (existing) {
+      return res.json({
+        status: 'ERROR',
+        message: 'Ja existeix un usuari amb aquest email'
+      });
+    }
+
+    const newUser = await User.create({
+      username,
+      email,
+      password,
+      phoneNumber,
+      isAdministrator: isAdministrator || false,
+      isValidated: isValidated || false
+    });
+
+    return res.json({
+      status: 'OK',
+      message: 'Usuari creat correctament',
+      data: {
+        userId: newUser.userId
+      }
+    });
+
+  } catch (error) {
+    logger.error(error);
+    return res.status(500).json({
+      status: 'ERROR',
+      message: 'Error intern'
+    });
+  }
+};
+
+/**
  * LOGIN
  */
 const adminLogin = async (req, res) => {
@@ -187,4 +270,6 @@ module.exports = {
   adminLogout,
   adminTestToken,
   adminGetUsers,
+  adminDeleteUser,
+  adminCreateUser,
 };
