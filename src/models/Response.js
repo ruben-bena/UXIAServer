@@ -19,6 +19,10 @@ const Response = sequelize.define('Response', {
         type: DataTypes.TEXT,
         allowNull: true
     },
+    tags: {
+        type: DataTypes.JSON,
+        allowNull: true
+    },
     createdAt: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW
