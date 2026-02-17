@@ -1,7 +1,6 @@
 const { logger } = require('../config/logger');
-const { Request } = require('../models');
+const { Request, Response } = require('../models');
 const fs = require('fs').promises;
-const path = require('path');
 require('dotenv').config();
 
 const analyzeImage = async (req, res) => {
@@ -47,19 +46,22 @@ const analyzeImage = async (req, res) => {
     });
     const data = await ollamaResponse.json();
     logger.debug(`[analyzeImageController] Respuesta de completa de Ollama: ${JSON.stringify(data, null, 2)}`);
+
+    // Consolidar respuesta de la IA en objeto Response
+    logger.debug('[analyzeImageController] Consolidando objeto Response...');
+    const rawModelResponse = data.response;
+    const parsed = JSON.parse(rawModelResponse);
+    const newResponse = await Response.create({
+      requestId: newRequest.requestId,
+      responseContent: parsed.responseContent,
+      tags: parsed.tags
+    });
+    logger.debug('[analyzeImageController] Objeto Response consolidado con éxito');
+
+    // Retornar respuesta
     return res.json({
       status: 'OK',
       message: JSON.stringify(data, null, 2)
-    });
-
-    // Consolidar respuesta de la IA en objeto Response
-
-    // Retornar respuesta
-
-    logger.debug('Retornando un placeholder que habrá que cambiar..."');
-    return res.json({
-      status: 'OK',
-      message: 'Maria image processed'
     });
   } catch (error) {
     logger.error(error);
