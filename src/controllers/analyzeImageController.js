@@ -27,7 +27,6 @@ const analyzeImage = async (req, res) => {
     logger.debug('[analyzeImageController] Objeto Request consolidado con éxito.');
 
     // Petición a la IA
-    //const base64 = await imageToBase64('./assets/labrador.jpg');
     const base64 = images[0];
     logger.debug('[analyzeImageController] Imagen convertida a base64 con éxito.');
     const requestBody = {
@@ -53,7 +52,7 @@ const analyzeImage = async (req, res) => {
     const parsed = JSON.parse(rawModelResponse);
     const newResponse = await Response.create({
       requestId: newRequest.requestId,
-      responseContent: parsed.responseContent,
+      responseContent: parsed.description,
       tags: parsed.tags
     });
     logger.debug('[analyzeImageController] Objeto Response consolidado con éxito');
