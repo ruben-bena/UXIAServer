@@ -1,0 +1,16 @@
+meta {
+  name: [LOCAL] INVALID body should return ERROR
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{local-uri}}/api/usuaris/registrar
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
