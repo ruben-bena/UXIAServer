@@ -14,16 +14,16 @@ const validateUser = async (req, res) => {
         // Compare body validationCode with stored one
         // Buscar usuario con mismo número de teléfono
         logger.debug(`[registerUserController] Buscando usuario con mismo telefono (phoneNumber=${phoneNumber})...`);
-        const userWithPhoneNumber = User.findOne({
+        const userWithPhoneNumber = await User.findOne({
             where: {
                 phoneNumber: phoneNumber
             }
         });
         // TODO: Contemplar caso de no encontrar usuario con ese número
-        logger.debug(`[registerUserController] Usuario encontrado (username=${userWithPhoneNumber.username}`);
+        logger.debug(`[registerUserController] Usuario encontrado (username=${userWithPhoneNumber.username})`);
 
         // Comparar código recibido con código guardado
-        
+
 
         // Si el código es válido, retornamos token
         // En caso contrario, retornamos error
