@@ -1,0 +1,23 @@
+meta {
+  name: [LOCAL] VALID body should do OK
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{local-uri}}/api/usuaris/validar
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "phoneNumber": "+34 600000000",
+    "validationCode": "374045"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
