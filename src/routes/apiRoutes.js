@@ -4,6 +4,7 @@ const controller = require('../controllers/apiController.js');
 const adminAuth = require('../middleware/adminAuth.js');
 const { analyzeImage } = require('../controllers/analyzeImageController.js');
 const { registerUser } = require('../controllers/registerUserController.js');
+const { validateUser } = require('../controllers/validateUserController.js');
 
 
 router.post('/admin/usuaris/login', controller.adminLogin);
@@ -14,5 +15,6 @@ router.get('/admin/usuaris', adminAuth, controller.adminGetUsers);
 router.delete('/admin/usuaris/:userId', adminAuth, controller.adminDeleteUser);
 router.post('/admin/usuaris', adminAuth, controller.adminCreateUser);
 router.post('/usuaris/registrar', registerUser);
+router.post('/api/usuaris/validar', validateUser);
 
 module.exports = router;
