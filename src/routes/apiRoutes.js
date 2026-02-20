@@ -3,7 +3,7 @@ const router = express.Router();
 const controller = require('../controllers/apiController.js');
 const adminAuth = require('../middleware/adminAuth.js');
 const { analyzeImage } = require('../controllers/analyzeImageController.js');
-const { registerUser } = require('../controllers/registerUser.js');
+const { registerUser } = require('../controllers/registerUserController.js');
 
 
 router.post('/admin/usuaris/login', controller.adminLogin);
