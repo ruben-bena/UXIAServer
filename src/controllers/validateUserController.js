@@ -11,7 +11,9 @@ const validateUser = async (req, res) => {
             validationCode
         } = req.body;
 
-        
+        // Compare body validationCode with stored one
+
+        // If is valid, return Token
 
         // Retornar respuesta
         return res.status(200).json({

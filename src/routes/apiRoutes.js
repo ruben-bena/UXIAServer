@@ -15,6 +15,6 @@ router.get('/admin/usuaris', adminAuth, controller.adminGetUsers);
 router.delete('/admin/usuaris/:userId', adminAuth, controller.adminDeleteUser);
 router.post('/admin/usuaris', adminAuth, controller.adminCreateUser);
 router.post('/usuaris/registrar', registerUser);
-router.post('/api/usuaris/validar', validateUser);
+router.post('/usuaris/validar', validateUser);
 
 module.exports = router;
