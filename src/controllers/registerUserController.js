@@ -26,21 +26,26 @@ const registerUser = async (req, res) => {
         });
         logger.debug('[registerUserController] Objeto User consolidado con éxito.');
 
-        // Generar número de 6 cifras
+        // Generar número de 6 cifras, y guardarlo en tabla del User
         const randomSixDigitsCode = Math.floor(100000 + Math.random() * 900000);
         logger.debug(`[registerUserController] Código de 6 digitos generado --> ${randomSixDigitsCode}`);
+        newUser.validationCode = randomSixDigitsCode;
+        await newUser.save();
+        logger.debug(`[registerUserController] Guardado el código dentro de su User y persistido en BBDD.`);
 
-        // Enviar por SMS y esperar respuesta del Usuario
+        // Enviar número por SMS a teléfono registrado
 
-        // Recibir número usuario y validar si aplica
-
-        // Enviar Token a usuario
 
         // Retornar respuesta
         return res.status(200).json({
             status: 'OK',
-            message: 'Esta ruta no está 100% implementada'
-        }); 
+            message: 'User correctly created',
+            data: {
+                'username': username,
+                'email': email,
+                'phoneNumber': phoneNumber
+            }
+        });
     } catch (error) {
         logger.error(error);
         return res.status(500).json({
