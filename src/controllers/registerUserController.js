@@ -27,7 +27,9 @@ const registerUser = async (req, res) => {
         logger.debug('[registerUserController] Objeto User consolidado con éxito.');
 
         // Generar número de 6 cifras
-        
+        const randomSixDigitsCode = Math.floor(100000 + Math.random() * 900000);
+        logger.debug(`[registerUserController] Código de 6 digitos generado --> ${randomSixDigitsCode}`);
+
         // Enviar por SMS y esperar respuesta del Usuario
 
         // Recibir número usuario y validar si aplica
@@ -35,7 +37,7 @@ const registerUser = async (req, res) => {
         // Enviar Token a usuario
 
         // Retornar respuesta
-        return res.status(500).json({
+        return res.status(200).json({
             status: 'OK',
             message: 'Esta ruta no está 100% implementada'
         }); 
