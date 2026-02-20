@@ -12,8 +12,21 @@ const validateUser = async (req, res) => {
         } = req.body;
 
         // Compare body validationCode with stored one
+        // Buscar usuario con mismo número de teléfono
+        logger.debug(`[registerUserController] Buscando usuario con mismo telefono (phoneNumber=${phoneNumber})...`);
+        const userWithPhoneNumber = User.findOne({
+            where: {
+                phoneNumber: phoneNumber
+            }
+        });
+        // TODO: Contemplar caso de no encontrar usuario con ese número
+        logger.debug(`[registerUserController] Usuario encontrado (username=${userWithPhoneNumber.username}`);
 
-        // If is valid, return Token
+        // Comparar código recibido con código guardado
+        
+
+        // Si el código es válido, retornamos token
+        // En caso contrario, retornamos error
 
         // Retornar respuesta
         return res.status(200).json({
