@@ -39,6 +39,10 @@ const User = sequelize.define('User', {
             notEmpty: true
         }
     },
+    validationCode: {
+        type: DataTypes.INTEGER,
+        defaultValue: -1
+    },
     isValidated: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
