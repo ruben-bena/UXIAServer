@@ -13,6 +13,12 @@ MYSQL_DATABASE=
 CHAT_API_OLLAMA_URL=http://127.0.0.1:11434/api
 CHAT_API_OLLAMA_MODEL=qwen2.5vl:7b
 
+# SMS Server
+SMS_SERVER_URL=
+SMS_SERVER_USERNAME=
+SMS_SERVER_ENDPOINT=
+SMS_SERVER_TOKEN=
+
 # Logging Configuration
 LOG_LEVEL=debug                       # error, warn, info, http, verbose, debug, silly
 LOG_FILE_PATH=./logs                  # Directori on es guardaran els logs
