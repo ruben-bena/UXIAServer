@@ -15,6 +15,18 @@ const registerUser = async (req, res) => {
         } = req.body;
 
         // Validación del body
+        const isPhoneNumberValid = /^\d{9}$/.test(phoneNumber?.trim()); // Regex --> exactamente 9 dígitos numéricos (ejemplo: "612345678"). No permite espacios, letras ni símbolos.
+        if (
+            !username?.trim() || 
+            !password?.trim() || 
+            !email?.trim() || 
+            !isPhoneNumberValid
+        ) {
+            return res.status(400).json({
+                status: 'ERROR',
+                message: 'Invalid input data'
+            });
+        }
 
         // Persistir objeto User
         logger.debug('[registerUserController] Consolidando objeto User...');
