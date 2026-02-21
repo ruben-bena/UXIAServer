@@ -1,0 +1,23 @@
+meta {
+  name: [PROXMOX] VALID body should do OK
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{proxmox-uri}}/api/usuaris/validar
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "phoneNumber": "658676860",
+    "validationCode": "466751"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

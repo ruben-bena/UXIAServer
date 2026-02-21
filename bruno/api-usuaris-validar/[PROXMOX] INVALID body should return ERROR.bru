@@ -1,0 +1,16 @@
+meta {
+  name: [PROXMOX] INVALID body should return ERROR
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{proxmox-uri}}/api/usuaris/validar
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
