@@ -2,6 +2,7 @@ const { logger } = require('../config/logger');
 const { User } = require('../models');
 const fs = require('fs').promises;
 require('dotenv').config();
+const axios = require('axios');
 
 const registerUser = async (req, res) => {
     try {
@@ -34,7 +35,19 @@ const registerUser = async (req, res) => {
         logger.debug(`[registerUserController] Guardado el código dentro de su User y persistido en BBDD.`);
 
         // Enviar número por SMS a teléfono registrado
-
+        const smsServerUrlWithEndpoint = process.env.SMS_SERVER_URL + process.env.SMS_SERVER_ENDPOINT;
+        const smsServerUsername = process.env.SMS_SERVER_USERNAME;
+        const smsServerToken = process.env.SMS_SERVER_TOKEN;
+        logger.debug('[registerUserController] Enviando SMS de validación...');
+        await axios.get(smsServerUrlWithEndpoint, {
+            params: {
+                api_token: smsServerToken,
+                username: smsServerUsername,
+                text: `Validation code: ${randomSixDigitsCode}`,
+                receiver: phoneNumber
+            }
+        });
+        logger.debug('[registerUserController] SMS enviado correctamente.');
 
         // Retornar respuesta
         return res.status(200).json({
