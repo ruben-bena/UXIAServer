@@ -13,6 +13,17 @@ const validateUser = async (req, res) => {
             validationCode
         } = req.body;
 
+        // Validación del body
+        if (
+            !phoneNumber?.trim() || 
+            !validationCode?.trim()
+        ) {
+            return res.status(400).json({
+                status: 'ERROR',
+                message: 'Invalid input data'
+            });
+        }
+
         // Buscar usuario con mismo número de teléfono
         logger.debug(`[registerUserController] Buscando usuario con mismo telefono (phoneNumber="${phoneNumber}")...`);
         const userWithPhoneNumber = await User.findOne({
@@ -26,7 +37,7 @@ const validateUser = async (req, res) => {
             logger.debug(`[registerUserController] Usuario con phoneNumber="${phoneNumber}" no encontrado. Retornando error...`);
             return res.status(400).json({
                 status: 'ERROR',
-                message: 'No user found with that phoneNumber'
+                message: 'No user found with that phoneNumber and pending validation'
             });
         }
         logger.debug(`[registerUserController] Usuario encontrado (username="${userWithPhoneNumber.username}")`);
