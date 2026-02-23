@@ -48,7 +48,10 @@ const analyzeImage = async (req, res) => {
 
     // Consolidar respuesta de la IA en objeto Response
     logger.debug('[analyzeImageController] Consolidando objeto Response...');
-    const rawModelResponse = data.response;
+    const rawModelResponse = data.response
+      .replace(/```json/g, '')
+      .replace(/```/g, '')
+      .trim();
     const parsed = JSON.parse(rawModelResponse);
     logger.debug(`parsed: ${JSON.stringify(parsed)}`);
     logger.debug(`description: ${parsed.description}`);
