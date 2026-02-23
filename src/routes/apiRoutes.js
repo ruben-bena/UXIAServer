@@ -5,6 +5,7 @@ const adminAuth = require('../middleware/adminAuth.js');
 const { analyzeImage } = require('../controllers/analyzeImageController.js');
 const { registerUser } = require('../controllers/registerUserController.js');
 const { validateUser } = require('../controllers/validateUserController.js');
+const { getTags } = require('../controllers/getTagsController.js');
 
 
 router.post('/admin/usuaris/login', controller.adminLogin);
@@ -16,5 +17,6 @@ router.delete('/admin/usuaris/:userId', adminAuth, controller.adminDeleteUser);
 router.post('/admin/usuaris', adminAuth, controller.adminCreateUser);
 router.post('/usuaris/registrar', registerUser);
 router.post('/usuaris/validar', validateUser);
+router.get('/admin/responses/get-tags', getTags);
 
 module.exports = router;
