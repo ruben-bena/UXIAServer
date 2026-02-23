@@ -1,0 +1,16 @@
+meta {
+  name: [PROXMOX] Response should be OK (1)
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{proxmox-uri}}/api/admin/responses/get-tags
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

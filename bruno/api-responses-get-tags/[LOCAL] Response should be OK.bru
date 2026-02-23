@@ -1,0 +1,16 @@
+meta {
+  name: [LOCAL] Response should be OK
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{local-uri}}/api/admin/responses/get-tags
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
