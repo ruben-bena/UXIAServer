@@ -5,8 +5,10 @@ require('dotenv').config();
 
 const getTags = async (req, res) => {
     try {
-        logger.debug('[getTagsController] Entro en getTagsController');
         // Obtener todos los Responses
+        logger.debug('[getTagsController] Recopilando todos los objetos Response...');
+        const responses = await Response.findAll();
+        logger.debug('[getTagsController] Objetos Response recopilados');
 
         // Recorrer responses y construir el JSON de tags
 
